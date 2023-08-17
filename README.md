@@ -14,7 +14,7 @@ Ensure you have Docker installed before proceeding.
 1. Clone the repository:
 ``` git clone https://github.com/ZijingWei/ReciptProcessor.git ```
 2. Navigate to the repository directory:
-``` cd path/to/receipt-processor ```
+``` cd path/to/ReciptProcessor ```
 3. Build the Docker image:
 ``` docker build -t receipt-processor . ```
 4. Run the Docker container:
