@@ -19,7 +19,7 @@ Ensure you have Docker installed before proceeding.
 ``` docker build -t receipt-processor . ```
 4. Run the Docker container:
 ``` docker run -p 5000:5000 receipt-processor ```
-The application should now be running on `http://localhost:5000`.
+The application should now be running on `http://127.0.0.1:5000`.
 
 ## Usage ##
 
@@ -29,9 +29,35 @@ The application should now be running on `http://localhost:5000`.
 - Payload: Receipt JSON
 - Response: JSON containing a unique ID for the receipt.
 
-**Example Request:**
-``` curl -X POST http://localhost:5000/receipts/process -H "Content-Type: application/json" -d '{"retailer": "Target", "purchaseDate": "2022-01-01", ... }' ```
-**Example Request:**
+**Example Payload:**
+``` 
+{
+  "retailer": "Target",
+  "purchaseDate": "2022-01-01",
+  "purchaseTime": "13:01",
+  "items": [
+    {
+      "shortDescription": "Mountain Dew 12PK",
+      "price": "6.49"
+    },{
+      "shortDescription": "Emils Cheese Pizza",
+      "price": "12.25"
+    },{
+      "shortDescription": "Knorr Creamy Chicken",
+      "price": "1.26"
+    },{
+      "shortDescription": "Doritos Nacho Cheese",
+      "price": "3.35"
+    },{
+      "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ",
+      "price": "12.00"
+    }
+  ],
+  "total": "35.35"
+}
+```
+
+**Example Response:**
 ```
 {
   "id": "7fb1377b-b223-49d9-a31a-5a02701dd310"
@@ -44,9 +70,7 @@ The application should now be running on `http://localhost:5000`.
 - Payload: Receipt JSON
 - Response: JSON containing a unique ID for the receipt.
 
-**Example Request:**
-``` curl http://localhost:5000/receipts/7fb1377b-b223-49d9-a31a-5a02701dd310/points ```
-**Example Request:**
+**Example Response:**
 ```
 {
   "points": 32
